@@ -1,0 +1,36 @@
+body{
+	padding:0px;
+	margin:0px;
+}
+#nav {
+	width:300px;
+	margin:auto;
+}
+#nav ul {
+  padding:30px 0 5px;
+  text-align:center;
+}
+#nav li {
+  display:inline;
+  padding:0 2px;
+}
+#nav a {
+  font:.75em "lucida grande", arial, sans-serif;
+  color:#08f;
+}
+#phone_float{
+	width:600px;
+	margin:auto;
+	text-align:center;
+	position:relative;
+}
+img#phone{
+	
+}
+#portal{
+	position:absolute;
+	z-index:5;
+	-moz-border-radius: 6px;
+	-webkit-border-radius:6px;
+	border-radius: 6px;
+}

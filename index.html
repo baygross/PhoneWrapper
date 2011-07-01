@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PhoneWrapper</title>
+<meta name="author" content="bay.gross@yale.edu">
+<!-- Date: 2011-06-30 -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<div id="nav">
+  <ul>
+    <li><a href="#" class="phone_link" alt="iphone">iPhone</a>
+    <li><a href="#" class="phone_link" alt="android">Android</a>
+    <li><a href="#" class="phone_link" alt="blackberry">Blackberry</a>
+  </ul>
+</div>
+<div id='wrapper'>
+  <div id='phone_float'>
+		<img id="phone" src="phones/iphone.png"></img>
+		<iframe id='portal' src="http://jquerymobile.com/test/" width="300px" height="600px" frameborder='0' scrolling='no'>
+		  <p>Your browser does not support iframes.</p>
+		</iframe>
+  </div>
+		<img src="phones/iphone.png" style="display:none"></img>
+		<img src="phones/android.png" style="display:none"></img>
+		<img src="phones/blackberry.png" style="display:none"></img>
+</div>
+
+<script>
+var phones = new Array();
+phones['iphone'] = {
+	height: '525px',
+	left: '125px',
+	top: '125px',
+	width: '353px'
+};
+phones['android'] = {
+	height: '534px',
+	left: '139px',
+	top: '117px',
+	width: '322px'
+};
+phones['blackberry'] = {
+	height: '469px',
+	left: '125px',
+	top: '138px',
+	width: '350px'
+};
+
+$(document).ready(function(){
+	$('.phone_link').click(function(){
+			displayPhone($(this).attr('alt'));
+	});
+	displayPhone('iphone');
+});
+
+function displayPhone(tp){
+	$('#phone').attr('src', 'phones/' + tp + '.png');
+	$('#portal').css({
+		top :	phones[tp].top,
+		left : phones[tp].left,
+		width : phones[tp].width,
+		height : phones[tp].height
+	});
+}
+
+function ResizeExcel(){
+	h =$(window).height() - 2; 
+	w =$(window).width() - 2; 
+	
+	if (h/w < 781/1280){
+		// height limiting
+		ratio = h/781;
+		if (h<781){
+			width = ratio * 1280;
+			height = h;
+			offset=0;
+		} else {
+			width = 1280;
+			height = 781;
+			offset = (h-781)*.1
+		}
+	} else {//width limiting
+		ratio = w/1280;
+		if (w<1280){
+			height = ratio * 781;
+			width = w;
+			offset=0;
+		} else {
+			width = 1280;
+			height = 781;
+			offset = (h-781)*.1
+		}
+	}
+	$('#wrapper').css({'height':height+'px', 'width':width+'px', 'margin-top':offset+'px'});
+}
+</script>
+</body>
+</html>
